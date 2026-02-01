@@ -1,0 +1,9 @@
+circuit,num_qubits,t_count,operator_norm_distance
+01_controlled_y,2,8,1.9999999999999998
+02_cry_pi_7,2,6,1.9946020032789107
+03_exp_zz,2,3,1.2078642083869298
+04_exp_xx_yy,2,27,1.4908141322302908
+05_swap,2,0,0.0
+06_ising,2,9,1.9993797027583673
+08_structured,2,1,0.0
+09_qft,2,2,1.847759065022573
