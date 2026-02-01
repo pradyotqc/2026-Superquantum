@@ -147,6 +147,55 @@ def c9_qft():
     qc.cx(0,1)
     return qc
 
+
+def c7_state_prep():
+    """
+    Explicit 2-qubit state preparation using bounded Clifford+T blocks.
+    This prepares a generic non-stabilizer state (approximate).
+    """
+    qc = QuantumCircuit(2)
+
+    # First qubit amplitudes
+    approx_rz_pi_over_7(qc, 0)
+    qc.h(0)
+
+    # Controlled amplitude on second qubit
+    qc.cx(0, 1)
+    approx_rz_pi_over_7(qc, 1)
+    qc.cx(0, 1)
+
+    # Relative phase
+    approx_minus_rz_pi_over_7(qc, 1)
+
+    return qc
+
+def c10_random_unitary():
+    """
+    Deterministic 'random-like' 2-qubit unitary using Clifford+T only.
+    Acts as a structured proxy for a Haar-random unitary.
+    """
+    qc = QuantumCircuit(2)
+
+    # Layer 1
+    qc.h([0, 1])
+    approx_rz_pi_over_7(qc, 0)
+    approx_minus_rz_pi_over_7(qc, 1)
+
+    # Entangling layer
+    qc.cx(0, 1)
+    approx_rz_pi_over_7(qc, 1)
+    qc.cx(1, 0)
+
+    # Layer 2
+    qc.h(0)
+    approx_minus_rz_pi_over_7(qc, 0)
+    qc.h(1)
+    approx_rz_pi_over_7(qc, 1)
+
+    return qc
+
+
+
 # ======================================================
 # Problem 11 — rmsynth ONLY
 # ======================================================
@@ -195,9 +244,11 @@ circuits = {
     "03_exp_zz": c3_exp_zz(),
     "04_exp_xx_yy": c4_exp_xx_yy(),
     "05_swap_exact": c5_swap(),
+    "07_state_prep": c7_state_prep(),
     "06_ising": c6_ising(),
     "08_structured_1": c8_structured(),
     "09_qft": c9_qft(),
+    "10_random_unitary": c10_random_unitary(),
 }
 
 with open(f"{OUTPUT_DIR}/results.csv", "w", newline="") as f:

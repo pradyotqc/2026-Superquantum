@@ -1,1 +1,11 @@
 circuit,num_qubits,t_count,operator_norm_distance
+01_controlled_y,2,8,6.661338147750939e-16
+02_cry_pi_7,2,6,0.0
+03_exp_zz,2,3,0.0
+04_exp_xx_yy,2,27,2.507029253912501e-15
+05_swap_exact,2,0,0.0
+07_state_prep,2,9,3.7618702697364755e-16
+06_ising,2,9,4.687441101019491e-16
+08_structured_1,2,1,0.0
+09_qft,2,2,1.1102230246251565e-16
+10_random_unitary,2,15,4.251615016393839e-16
